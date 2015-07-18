@@ -1,39 +1,75 @@
 -- VERSION_4
 -- START DISKCACHE
 C:\Users\Christos\Documents\GitHub\hackathon-rep\.metadata\.plugins\org.eclipse.core.resources\.projects\SmartFuel\com.python.pydev.analysis\v2_indexcache
-SmartFuel.settings|1437213822011|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\settings.py
-SmartFuel.__init__|1437213110912|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\__init__.py
-SmartFuel.views|1437213893343|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\views.py
+data.migrations.0001_initial|1437228309092|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\migrations\0001_initial.py
+data.models|1437228300866|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\models.py
+SmartFuel.views|1437231071880|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\views.py
+data.tests|1437227821476|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\tests.py
 SmartFuel.wsgi|1437213110881|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\wsgi.py
+data.admin|1437227821460|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\admin.py
+data.migrations.__init__|1437227821476|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\migrations\__init__.py
 manage|1437213110584|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\manage.py
+SmartFuel.settings|1437230158250|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\settings.py
+SmartFuel.__init__|1437213110912|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\__init__.py
+SmartFuel.urls|1437214254577|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\urls.py
+SmartFuel.aco|1437227555535|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\aco.py
+data.views|1437227821476|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\views.py
+data.__init__|1437227821476|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\data\__init__.py
 -- END DISKCACHE
 -- START DICTIONARY
-3
-1=SmartFuel.settings
-3=SmartFuel.views
-2=SmartFuel.wsgi
+9
+2=SmartFuel.settings
+5=data.migrations.0001_initial
+7=SmartFuel.urls
+1=SmartFuel.aco
+6=data.models
+9=Migration
+4=SmartFuel.views
+3=SmartFuel.wsgi
+8=PatrolStation
 -- END DICTIONARY
 -- START TREE 1
-18
-all|1|ALLOWED_HOSTS!11@
-app|1|application!19@
-bas|1|BASE_DIR!11@
-dat|1|DATABASES!11@
-deb|1|DEBUG!11@
-ind|1|index!26@
-ins|1|INSTALLED_APPS!11@
-lan|1|LANGUAGE_CODE!11@
-mai|0|
-mid|1|MIDDLEWARE_CLASSES!11@
-roo|1|ROOT_URLCONF!11@
-sec|1|SECRET_KEY!11@
-sta|2|STATIC_URL!11@STATICFILES_DIRS!11@
-tem|2|TEMPLATE_DEBUG!11@TEMPLATE_DIRS!11@
-tim|1|TIME_ZONE!11@
-url|0|
-use|3|USE_I18N!11@USE_TZ!11@USE_L10N!11@
-wsg|1|WSGI_APPLICATION!11@
+23
+aco|1|aco!10@
+all|1|ALLOWED_HOSTS!19@
+app|1|application!27@
+bas|1|BASE_DIR!19@
+cal|1|calulate_distance!10@
+dat|1|DATABASES!19@
+deb|1|DEBUG!19@
+get|1|get_feasible!10@
+ind|1|index!34@
+ins|1|INSTALLED_APPS!19@
+lan|1|LANGUAGE_CODE!19@
+mid|1|MIDDLEWARE_CLASSES!19@
+mig|1|Migration!41@
+nea|1|nearest_patrol_stations!34@
+pat|1|PatrolStation!49@
+roo|1|ROOT_URLCONF!19@
+sec|1|SECRET_KEY!19@
+sta|2|STATIC_URL!19@STATICFILES_DIRS!19@
+tem|2|TEMPLATE_DEBUG!19@TEMPLATE_DIRS!19@
+tim|1|TIME_ZONE!19@
+url|1|urlpatterns!59@
+use|3|USE_I18N!19@USE_TZ!19@USE_L10N!19@
+wsg|1|WSGI_APPLICATION!19@
 -- END TREE
 -- START TREE 2
-0
+16
+add|1|address!8&51@
+cit|1|city!8&51@
+dep|1|dependencies!9&43@
+die|1|diesel!8&51@
+gas|1|gas!8&51@
+lat|1|latitude!8&51@
+lon|1|longitude!8&51@
+ope|1|operations!9&43@
+own|1|owner!8&51@
+pho|1|phone!8&51@
+pos|1|post_code!8&51@
+pre|1|prefecture!8&51@
+reg|1|region!8&51@
+sup|1|super_unleaded!8&51@
+typ|1|type!8&51@
+unl|2|unleaded95!8&51@unleaded100!8&51@
 -- END TREE

@@ -12,21 +12,37 @@ from django.shortcuts import render
 
 import csv
 import io, sys
-from model import PatrolStation
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from data.models import PatrolStation
+#reload(sys)
+#sys.setdefaultencoding('utf-8')
 
 
 @csrf_exempt
 def index(request, page=None):
-    with io.open('c:/users/theo/desktop/PratiriaPouApostellounStoixeiaGGPS.csv', 'r') as csv_file:
+    with io.open('PratiriaPouApostellounStoixeiaGGPS.csv', 'r') as csv_file:
             reader = csv.reader(csv_file, delimiter=';')
             counter = 0
+            flag = True
             for row in reader:
-                row = [x.decode('utf-8') for x in row]
-            r = PatrolStation(row[0], row[1], row[2], row[3], row[4], row[5],
-                              row[6], row[7], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-            r.save()
+                if (flag):
+                    flag = False
+                row = [x for x in row]
+                r = PatrolStation.objects.create(owner = str(row[0]),
+                                                     region = row[1],
+                                                     address = row[2],
+                                                     type = row[3],
+                                                     phone = row[4],
+                                                     city = row[5],
+                                                     post_code = row[6],
+                                                     prefecture = row[7],
+                                                     latitude = 0.0,
+                                                     longitude = 0.0,
+                                                     unleaded95 = 0.0,
+                                                     unleaded100 = 0.0,
+                                                     super_unleaded = 0.0,
+                                                     gas = 0.0,
+                                                     diesel = 0.0)
+                r.save()
     return render(request, 'index.html')
 
 def nearest_patrol_stations(request):

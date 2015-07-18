@@ -20,7 +20,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <!--[endif]-->
         <script type="text/javascript"
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXLRJtVzEOxAQOvzdGCapZFF-24zUTn_I&sensor=true">
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXLRJtVzEOxAQOvzdGCapZFF-24zUTn_I&sensor=true&libraries=places">
         </script>
         <script type="text/javascript" src="/static/js/maps.js"></script>
     </head>
@@ -291,7 +291,7 @@
                     <!-- search form -->
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <input id="pac-input" class="form-control" type="text" placeholder="Search Box">
                             <span class="input-group-btn">
                                 <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>

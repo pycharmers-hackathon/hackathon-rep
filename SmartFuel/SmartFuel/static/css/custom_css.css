@@ -9,7 +9,10 @@
 .free_div_pad {
 	padding: 0;
 }
-
+#map-display {
+    width: 100%;
+    height: 600px;
+}
 #lists-bar {
 	height: auto;
 	max-height: 550px;

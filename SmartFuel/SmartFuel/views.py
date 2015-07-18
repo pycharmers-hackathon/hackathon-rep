@@ -12,21 +12,31 @@ from django.shortcuts import render
 
 import csv
 import io, sys
+from random import random
 from model import PatrolStation
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 
 @csrf_exempt
 def index(request, page=None):
-    with io.open('c:/users/theo/desktop/PratiriaPouApostellounStoixeiaGGPS.csv', 'r') as csv_file:
+    coordinates = []
+    with io.open('c:/users/theo/desktop/coordinates.txt', 'r') as csv_file:
             reader = csv.reader(csv_file, delimiter=';')
-            counter = 0
             for row in reader:
-                row = [x.decode('utf-8') for x in row]
-            r = PatrolStation(row[0], row[1], row[2], row[3], row[4], row[5],
-                              row[6], row[7], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-            r.save()
+                coordinates.append((row[0], row[1]))
+    counter = 2928
+    for i in range(1375):
+        unlead95 = 1 + random()
+        unlead100 = 1 + random()
+        super_unlead = 1 + random()
+        gas = 1 + random()
+        dieser = 1 + random()
+        PatrolStation.objects.filter(id=counter + 1).update(latitude=float(coordinates[i][0]),
+                                                            longitude=float(coordinates[i][1]),
+                                                            unleaded95=unlead95,
+                                                            unleaded100=unlead100,
+                                                            super_unleaded=super_unlead,
+                                                            gas=gas,
+                                                            diesel=dieser)
     return render(request, 'index.html')
 
 def nearest_patrol_stations(request):

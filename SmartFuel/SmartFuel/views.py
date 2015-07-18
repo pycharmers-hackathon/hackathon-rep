@@ -19,6 +19,14 @@ from data.models import PatrolStation
 
 @csrf_exempt
 def index(request, page=None):
+    return render(request, 'index.html')
+
+def nearest_patrol_stations(request):
+    latitute = request.get('lat')
+    longitute = request.get('lng')
+
+@csrf_exempt
+def insert_data(request, page=None):
     with io.open('PratiriaPouApostellounStoixeiaGGPS.csv', 'r') as csv_file:
             reader = csv.reader(csv_file, delimiter=';')
             counter = 0
@@ -43,8 +51,3 @@ def index(request, page=None):
                                                      gas = 0.0,
                                                      diesel = 0.0)
                 r.save()
-    return render(request, 'index.html')
-
-def nearest_patrol_stations(request):
-    latitute = request.get('lat')
-    longitute = request.get('lng')

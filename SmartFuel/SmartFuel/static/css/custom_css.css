@@ -1,0 +1,35 @@
+#search {
+	margin: 0 0 20px 0;
+	display: none;
+}
+.header-font {
+	font-size: 20px;
+}
+
+.free_div_pad {
+	padding: 0;
+}
+
+#lists-bar {
+	height: auto;
+	max-height: 550px;
+	width: 100%;
+	overflow: scroll;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+#prod-list-height {
+	min-height: 263px;
+	border: none;
+	padding: 0;
+}
+
+.text-pos-header {
+	text-align: center;
+}
+
+.set-text-center{
+	text-align: center;
+}

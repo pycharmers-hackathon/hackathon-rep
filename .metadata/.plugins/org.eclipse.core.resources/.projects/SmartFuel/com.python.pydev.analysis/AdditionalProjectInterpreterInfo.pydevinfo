@@ -1,0 +1,39 @@
+-- VERSION_4
+-- START DISKCACHE
+C:\Users\Christos\Documents\GitHub\hackathon-rep\.metadata\.plugins\org.eclipse.core.resources\.projects\SmartFuel\com.python.pydev.analysis\v2_indexcache
+SmartFuel.settings|1437213822011|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\settings.py
+SmartFuel.__init__|1437213110912|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\__init__.py
+SmartFuel.views|1437213893343|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\views.py
+SmartFuel.wsgi|1437213110881|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\SmartFuel\wsgi.py
+manage|1437213110584|C:\Users\Christos\Documents\GitHub\hackathon-rep\SmartFuel\manage.py
+-- END DISKCACHE
+-- START DICTIONARY
+3
+1=SmartFuel.settings
+3=SmartFuel.views
+2=SmartFuel.wsgi
+-- END DICTIONARY
+-- START TREE 1
+18
+all|1|ALLOWED_HOSTS!11@
+app|1|application!19@
+bas|1|BASE_DIR!11@
+dat|1|DATABASES!11@
+deb|1|DEBUG!11@
+ind|1|index!26@
+ins|1|INSTALLED_APPS!11@
+lan|1|LANGUAGE_CODE!11@
+mai|0|
+mid|1|MIDDLEWARE_CLASSES!11@
+roo|1|ROOT_URLCONF!11@
+sec|1|SECRET_KEY!11@
+sta|2|STATIC_URL!11@STATICFILES_DIRS!11@
+tem|2|TEMPLATE_DEBUG!11@TEMPLATE_DIRS!11@
+tim|1|TIME_ZONE!11@
+url|0|
+use|3|USE_I18N!11@USE_TZ!11@USE_L10N!11@
+wsg|1|WSGI_APPLICATION!11@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

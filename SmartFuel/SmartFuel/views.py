@@ -13,12 +13,31 @@ from django.shortcuts import render
 import csv
 import io, sys
 from data.models import PatrolStation
-#reload(sys)
-#sys.setdefaultencoding('utf-8')
+from random import random
 
 
 @csrf_exempt
 def index(request, page=None):
+    coordinates = []
+    with io.open('coordinates.txt', 'r') as csv_file:
+            reader = csv.reader(csv_file, delimiter=';')
+            for row in reader:
+                coordinates.append((row[0], row[1]))
+    counter = 2928
+    for i in range(1375):
+        unlead95 = 1 + random()
+        unlead100 = 1 + random()
+        super_unlead = 1 + random()
+        gas = 1 + random()
+        dieser = 1 + random()
+        t = float(coordinates[i][0])
+        PatrolStation.objects.filter(id=counter + 1).update(latitude=t,
+                                                            longitude=float(coordinates[i][1]),
+                                                            unleaded95=unlead95,
+                                                            unleaded100=unlead100,
+                                                            super_unleaded=super_unlead,
+                                                            gas=gas,
+                                                            diesel=dieser)
     return render(request, 'index.html')
 
 def nearest_patrol_stations(request):

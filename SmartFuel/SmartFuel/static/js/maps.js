@@ -5,7 +5,8 @@
 var map;
 var center;
 var circle;
-var markers = []
+var markers = [];
+
 function initialize() {
 
   var markers = [];
@@ -110,7 +111,8 @@ function getAddress(latlng) {
                     + results[1].formatted_address;
                 var marker = new google.maps.Marker({
                   position: latlng,
-                  map: map
+                  map: map,
+                  icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                 });
                 var infowindow = new google.maps.InfoWindow({
                     content: 'Είστε εδώ. ' + message

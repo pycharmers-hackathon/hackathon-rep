@@ -1,4 +1,4 @@
-rom math import radians, cos, sin, sqrt, atan2
+from math import radians, cos, sin, sqrt, atan2
 import random
 
 def aco(petrol_stations, dist, gas_type, capacity, initial_petrol, overall_dist,

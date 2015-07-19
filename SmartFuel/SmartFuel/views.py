@@ -18,7 +18,17 @@ from random import random
 
 @csrf_exempt
 def index(request, page=None):
-    return render(request, 'smartfuel.html')
+    t = get_template('smartfuel.html')
+    fuel_list = ['unleaded95', 'unleaded100', 'diesel', 'gas']
+    html = []
+    for i in range(1, 5):
+        html.append(saggest_html(request, (2928 + i), fuel_list[i - 1]))
+
+    html1 = t.render(Context({'html1': html[0],
+                             'html2': html[1],
+                             'html3': html[2],
+                             'html4': html[3]}))
+    return HttpResponse(html1)
 
 
 def nearest_fuel_stations(request):
@@ -54,3 +64,28 @@ def insert_data(request, page=None):
                                                      gas = 0.0,
                                                      diesel = 0.0)
                 r.save()
+
+@csrf_exempt
+def saggest_html(request, id, type):
+    t = get_template('suggest.html')
+    color_list = ['bg-aqua', 'bg-green', 'bg-yellow', 'bg-red']
+    object = PatrolStation.objects.get(id = id)
+    if (type == 'unleaded95'):
+        color = color_list[0]
+        price = object.unleaded95
+    elif (type == 'unleaded100'):
+        color = color_list[1]
+        price = object.unleaded100
+    elif (type == 'diesel'):
+        color = color_list[2]
+        price = object.diesel
+    else:
+        color = color_list[3]
+        price = object.gas
+
+    html = t.render(Context({'color1': color,
+                             'price': price,
+                             'address': object.address,
+                             'fuel': type}))
+
+    return html;

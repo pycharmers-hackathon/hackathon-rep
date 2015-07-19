@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Advanced C.R.M.</title>
+        <title>SmartFuel</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 		<!--<meta http-equiv="refresh" content="10; URL=${requestScope['javax.servlet.forward.request_uri']}">-->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,6 @@
         <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXLRJtVzEOxAQOvzdGCapZFF-24zUTn_I&sensor=true&libraries=places">
         </script>
-        <script type="text/javascript" src="/static/js/request.js"></script>
         <script type="text/javascript" src="/static/js/maps.js"></script>
     </head>
     <body class="skin-blue">
@@ -48,13 +47,13 @@
 
             </nav>
         </header>
-        <div class="wrapper row-offcanvas row-offcanvas-left">       
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
+        <div class="row-offcanvas row-offcanvas-left">       
+              <!-- sidebar: style can be found in sidebar.less -->
                     <!-- Sidebar user panel -->
             <!-- Left side column. contains the logo and sidebar -->
             
-            <aside class="left-side sidebar-offcanvas">         
+            <aside class="left-side sidebar-offcanvas">    
+                <section class="sidebar">     
                     <div class="user-panel">
 
                     </div>
@@ -68,7 +67,7 @@
 							<p class = "text-pos-header"><i class="fa fa-search"></i>&nbsp;<span><i>Customer Search</i></span></p>
 						</div>
                     <!-- search form -->
-
+						<div class = "box-body sidebar-form search-side" id="search">
 							<form role="form" action="clientsearchCont.jsp" method="get">
 
 								<div class="input-group">
@@ -140,15 +139,19 @@
 									</span>
 								</div>                                
 							</form>
+						</div>
 					</div>
 					
-                <div class ="box box-solid collapsed-box"><!--background-color: #458FB4;-->
+					<div class ="box box-solid collapsed-box"><!--background-color: #458FB4;-->
 						<div class="box-header bg-light-blue">
+							<div class="box-tools pull-right">
+								<button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-plus"></i></button>
+							</div> 
 
 							<p class = "text-pos-header"><i>Βρές τιμές βενζίνης κοντά στην τοποθεσία σου</i></span></p>
 						</div>
                     <!-- search form -->
-
+						<div class = "box-body sidebar-form search-side" id="search">
 							<form role="form" action="clientsearchCont.jsp" method="get">
 
 								<div class="input-group">
@@ -167,112 +170,36 @@
                                         </div>
                                 </div>
                             </form>
-                    </div>
-                <div class ="box box-solid collapsed-box"><!--background-color: #458FB4;-->
-						<div class="box-header bg-light-blue">
-
-							<p class = "text-pos-header"><i>Συστάσεις</i></p>
 						</div>
-                    <!-- search form -->
-                     </div>
-                </aside>
+                    </div>
                 </section>
+            </aside> 
         </div>
                 <!-- Content Header (Page header) -->
 
-                <aside class="right-side">
-                    <!-- Main content -->
-                    <section class="content">
-                        <div id="map-display"></div>
-                    </section><!-- /.content -->
-                </aside>
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                <section>
-                    <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3>
-                                        150
-                                    </h3>
-                                    <p>
-                                        New Orders
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>
-                                        53<sup style="font-size: 20px">%</sup>
-                                    </h3>
-                                    <p>
-                                        Bounce Rate
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>
-                                        44
-                                    </h3>
-                                    <p>
-                                        User Registrations
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <img src='static/img/1.JPEG'>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h3>
-                                        65
-                                    </h3>
-                                    <p>
-                                        Unique Visitors
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                    </div><!-- /.row -->
-                </section>
+                
 
             <!-- Right side column. Contains the navbar and content of the page -->
-            <aside class="right-side"> 
-
+            <aside class="right-side">
+				<!-- Main content -->
+				<section class="content">
+					<div id="map-display"></div>
+                    <!-- Small boxes (Stat box) -->
+					<div class ="box box-solid" style = "margin-top: 25px;"><!--background-color: #458FB4;-->
+						<div class="box-header bg-light-blue">
+							<p class = "text-pos-header suggestion-header"><i>Συστάσεις</i></p>
+						</div>
+                    <!-- search form -->
+                     </div>
+                    <div class="row">
+                        {{html1}}
+						{{html2}}
+						{{html3}}
+						{{html4}}
+                    </div><!-- /.row -->
+                </section>
             </aside><!-- /.right-side -->
         
 

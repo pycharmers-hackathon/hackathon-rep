@@ -61,3 +61,7 @@
 #target {
 	width: 345px;
 }
+
+.suggestion-header {
+	font-size: 150%;
+}

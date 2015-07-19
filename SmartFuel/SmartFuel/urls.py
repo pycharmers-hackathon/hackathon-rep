@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^index/$', index),
+    url(r'^smartfuel/$', index),
     url(r'^nearest/', nearest_fuel_stations),
     url(r'^optimal/', aco_controller),
 )

@@ -253,11 +253,18 @@ function calcRoute() {
       directionsDisplay.setDirections(response);
       var route = response.routes[0];
       var summaryPanel = document.getElementById('directions_panel');
-      summaryPanel.innerHTML = '<B>Ανεφοδιασμός Α</B>: 12 Ανδρουτσού, Λαμία, ΑΦΟΙ Γεωργίου' +
-            '<B>Ποσότητα</B>: 10L, <b>τιμή</B>: 1.242<br>' +
-            '<b>Ανεφοδιασμός Β: </b> 270ο χλμ Εθνικής οδού Λαμία-Θεσαλλονικής, Νίκος Μανιάς' +
-            '<B>Ποσότητα</B>: 15L, <b>τιμή</B>: 1.121<br><br>' +
-            '<b>Συνολικό κόστος</b>: 534.6 ευρώ';
+      summaryPanel.innerHTML = '<div class =\"box box-solid collapsed-box\">' +
+						'<div class=\"box-header bg-light-blue\">' +
+							'<p class = \"text-pos-header\"><span><i>Βέλτιστος ανεφοδιασμός</i></span></p>'+
+						'</div>' +
+						'<div class=\"box-body\">' +
+			'<p><B>Ανεφοδιασμός Α</B>: 12 Ανδρουτσού, Λαμία, ΑΦΟΙ Γεωργίου<br>' +
+            '<B>Ποσότητα</B>: 10L, <b>τιμή</B>: 1.242<br><br><br>' +
+            '<b>Ανεφοδιασμός Β: </b> 270ο χλμ Εθνικής οδού Λαμία-Θεσαλλονικής, Νίκος Μανιάς<br>' +
+            '<B>Ποσότητα</B>: 15L, <b>τιμή</B>: 1.121<br><br><br>' +
+            '<b>Συνολικό κόστος</b>: 534.6 ευρώ</p>' +
+			'</div>' +
+			'</div>';
     }
   });
 }

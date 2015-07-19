@@ -9,11 +9,10 @@ from django.contrib import messages
 from django.core import serializers
 from django.core.context_processors import csrf
 from django.shortcuts import render
-from aco import aco
-from data.models import PatrolStation
 
 import csv
 import io, sys
+from data.models import PatrolStation
 
 
 @csrf_exempt

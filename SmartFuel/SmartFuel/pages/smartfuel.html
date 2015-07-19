@@ -31,7 +31,7 @@
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 SmartFuel
             </a>
@@ -64,21 +64,17 @@
 								<button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-plus"></i></button>
 							</div>                        
 
-							<p class = "text-pos-header"><i class="fa fa-search"></i>&nbsp;<span><i>Customer Search</i></span></p>
+							<p class = "text-pos-header"><span><i>Βέλτιστος ανεφοδιασμός</i></span></p>
 						</div>
                     <!-- search form -->
 						<div class = "box-body sidebar-form search-side" id="search">
-							<form role="form" action="clientsearchCont.jsp" method="get">
+							<form>
 
 								<div class="input-group">
 									<label>Σημείο Έναρξης</label>
 									<div class="input-group">
 										
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Αναζήτηση..."/>
-										
-										<span class="input-group-btn">
-											<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
-										</span>
 									</div>
 								</div>
 								<div class="input-group">
@@ -86,10 +82,6 @@
 									<div class="input-group">
 										
 											<input type="text" name="clientid" class="form-control" placeholder="Αναζήτηση..." size="45"/>
-										
-										<span class="input-group-btn">
-											<button type='submit' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
-										</span>
 									</div>
 								</div>
 								<div class="input-group">
@@ -97,10 +89,6 @@
 									<div class="input-group">
 
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση"/>
-
-										<span class="input-group-btn">
-											<button type='submit' name='search' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
-										</span>
 									</div>
 								</div>
 								<div class="input-group">
@@ -108,10 +96,6 @@
 									<div class="input-group">
 										
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση..."/>
-										
-										<span class="input-group-btn">
-											<button type='submit' name='search' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
-										</span>
 									</div>
 								</div>
 								<div class="input-group">
@@ -120,9 +104,6 @@
 										
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση..."/>
 										
-										<span class="input-group-btn">
-											<button type='submit' name='search' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
-										</span>
 									</div>
 								</div> 
 								<label>Τύπος Καυσίμου</label>
@@ -134,10 +115,11 @@
 											<option value="anyone">Υγραέριο Κίνησης</option>                                            
 											<option value="anyone">Diesel Κίνησης</option>	                                            
 									</select>
-									<span class="input-group-btn">
-										<button type='submit' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
-									</span>
-								</div>                                
+								</div>
+								<div class="input-group">
+									<label>Βρες βέλτιστο ανεφοδιασμό</label>
+									<button type='button' onclick='calcRoute()' class="form-control btn btn-success btn-flat bg-green">Συνέχεια >></button>
+								</div>								
 							</form>
 						</div>
 					</div>
@@ -152,14 +134,14 @@
 						</div>
                     <!-- search form -->
 						<div class = "box-body sidebar-form search-side" id="search">
-							<form role="form" action="clientsearchCont.jsp" method="get">
+							<form>
 
 								<div class="input-group">
 									<label>Τωρινή τοποθεσία</label>
 									<div class="input-group">
 											<input id="pac-input" class="form-control" type="text" placeholder="Search Box">
 										<span class="input-group-btn">
-											<button type='submit' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+											<button type='button' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 										</span>
 									</div>
 								</div>
@@ -171,6 +153,8 @@
                                 </div>
                             </form>
 						</div>
+						
+					<div id="directions_panel" class="panel"></div>
                     </div>
                 </section>
             </aside> 

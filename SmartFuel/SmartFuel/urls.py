@@ -13,5 +13,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/$', index),
-    url(r'^nearest/', nearest_fuel_stations)
+    url(r'^nearest/', nearest_fuel_stations),
+    url(r'^optimal/', aco_controller),
 )

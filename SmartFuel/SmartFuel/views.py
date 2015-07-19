@@ -13,7 +13,7 @@ from django.shortcuts import render
 import csv
 import io, sys
 from data.models import PatrolStation
-from random import random
+from aco import aco
 
 
 @csrf_exempt
@@ -32,11 +32,22 @@ def index(request, page=None):
 
 
 def nearest_fuel_stations(request):
-    data = serializers.serialize('json', PatrolStation.objects.all(),
+    data = serializers.serialize('json', PatrolStation.objects.order_by('unleaded95'),
                                  fields=('owner', 'latitude', 'longitude',
-                                 'address'))
+                                 'address', 'unleaded95'))
     return HttpResponse(data, content_type='application/json')
 
+def aco_controller(request):
+    source = (37.979946, 23.727801)
+    target = (40.851363, 25.875331)
+    capacity = 20
+    initial_quanity = 10
+    consumption = 0.1
+    fuel = 'unleaded95'
+    overall_dist = 1500
+    a = aco(PatrolStation.objects.values(), fuel, capacity, initial_quanity,
+        overall_dist, consumption, source, target)
+    return HttpResponse('fsfs', content_type='plain/text')
 
 @csrf_exempt
 def insert_data(request, page=None):

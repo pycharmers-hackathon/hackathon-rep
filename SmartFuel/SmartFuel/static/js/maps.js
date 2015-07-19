@@ -6,6 +6,8 @@ var map;
 var center;
 var circle;
 var markers = [];
+var directionsService = new google.maps.DirectionsService();
+var directionsDisplay = new google.maps.DirectionsRenderer();
 
 function initialize() {
 
@@ -13,7 +15,7 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-display'), {
      zoom: 15
   });
-
+    directionsDisplay.setMap(map);
   // Try HTML5 geolocation
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -133,6 +135,7 @@ function showNearestFuelStations(radius) {
 		url: "/nearest",
 		dataType: 'json',
 		data: {
+            fuel: 'unleaded95'
 		},
 		success: function(data) {
             displayNearestFuelStations(radius, center, data);
@@ -143,7 +146,7 @@ function showNearestFuelStations(radius) {
 	});
 }
 
-function markMultipleStations(coordinates) {
+function markMultipleStations(coordinates, prices, address) {
 	var LATITUDE_INDEX = 0;
 	var LONGITUDE_INDEX = 1;
     if (markers.length > 0)
@@ -151,15 +154,24 @@ function markMultipleStations(coordinates) {
             markers[i].setMap(null);
             delete markers[i];
         }
-
 	for(var i = 0; i < coordinates.length; i++) {
         var location = new google.maps.LatLng(parseFloat(coordinates[i][LATITUDE_INDEX]),
             parseFloat(coordinates[i][LONGITUDE_INDEX]));
+        var url;
+        if (i == 0)
+            url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+        else
+            url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
         var marker = new google.maps.Marker({
             map: map,
-            position: location
+            position: location,
+            icon: url
         });
         markers.push(marker);
+        var infowindow = new google.maps.InfoWindow({
+            content: prices[i].toFixed(2)
+        });
+        infowindow.open(map, marker);
     }
 }
 
@@ -169,6 +181,8 @@ function displayNearestFuelStations(radius, pos, stations) {
         circle.setMap(null);
 	drawCircle(radius, pos);
     circle.setMap(map);
+    var prices = [];
+    var address = [];
 	for(var i = 0; i < stations.length; i++) {
         var lat = stations[i].fields.latitude;
         var lon = stations[i].fields.longitude;
@@ -178,10 +192,12 @@ function displayNearestFuelStations(radius, pos, stations) {
             geo_location.push(lat);
             geo_location.push(lon);
 			coord.push(geo_location);
+            prices.push(stations[i].fields.unleaded95);
+            address.push(stations[i].fields.address);
 		}
 	}
-	markMultipleStations(coord);
-	map.setZoom(13);
+	markMultipleStations(coord, prices, address);
+	map.setZoom(15);
 }
 
 function drawCircle(radius, location) {
@@ -197,7 +213,53 @@ function drawCircle(radius, location) {
 
 	};
 	circle = new google.maps.Circle(circleInfo);
-	map.setZoom(14);
+}
+
+function getOptimalStations() {
+    $.ajax({
+		url: "/optimal",
+		dataType: 'json',
+		data: {
+            consumption: $("#consumption").val(),
+            initial: $("#initial").val(),
+            fuel: $("#fuel").val(),
+            cap: $("#capacity").val()
+		},
+		success: function(data) {
+            alert(data);
+		},
+		error: function() {
+			alert("Κάτι πήγε στραβά παρακαλώ δοκιμάστε ξανά");
+		}
+	});
+}
+
+function calcRoute() {
+  var start = "Athens";
+  var end = "Thessaloniki";
+  var waypts = [{location: 'Lamia', stopover: true},
+      {location: "Temph", stopover:true}];
+
+
+  var request = {
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      var route = response.routes[0];
+      var summaryPanel = document.getElementById('directions_panel');
+      summaryPanel.innerHTML = '<B>Ανεφοδιασμός Α</B>: 12 Ανδρουτσού, Λαμία, ΑΦΟΙ Γεωργίου' +
+            '<B>Ποσότητα</B>: 10L, <b>τιμή</B>: 1.242<br>' +
+            '<b>Ανεφοδιασμός Β: </b> 270ο χλμ Εθνικής οδού Λαμία-Θεσαλλονικής, Νίκος Μανιάς' +
+            '<B>Ποσότητα</B>: 15L, <b>τιμή</B>: 1.121<br><br>' +
+            '<b>Συνολικό κόστος</b>: 534.6 ευρώ';
+    }
+  });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

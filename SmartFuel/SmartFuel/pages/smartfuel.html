@@ -21,6 +21,13 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <!--[endif]-->
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXLRJtVzEOxAQOvzdGCapZFF-24zUTn_I&sensor=true&libraries=places">
+        </script>
+        <script type="text/javascript" src="/static/js/request.js"></script>
+        <script type="text/javascript" src="/static/js/maps.js"></script>
     </head>
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
@@ -40,7 +47,6 @@
                 </a>
 
             </nav>
-                      
         </header>
         <div class="wrapper row-offcanvas row-offcanvas-left">       
                 <!-- sidebar: style can be found in sidebar.less -->
@@ -83,18 +89,18 @@
 											<input type="text" name="clientid" class="form-control" placeholder="Αναζήτηση..." size="45"/>
 										
 										<span class="input-group-btn">
-											<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+											<button type='submit' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 										</span>
 									</div>
 								</div>
 								<div class="input-group">
 									<label>Κατανάλωση Λίτρα/Χιλιόμετρο</label>
 									<div class="input-group">
-										
+
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση"/>
-										
+
 										<span class="input-group-btn">
-											<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+											<button type='submit' name='search' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 										</span>
 									</div>
 								</div>
@@ -105,7 +111,7 @@
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση..."/>
 										
 										<span class="input-group-btn">
-											<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+											<button type='submit' name='search' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 										</span>
 									</div>
 								</div>
@@ -116,7 +122,7 @@
 											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση..."/>
 										
 										<span class="input-group-btn">
-											<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+											<button type='submit' name='search' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 										</span>
 									</div>
 								</div> 
@@ -130,11 +136,10 @@
 											<option value="anyone">Diesel Κίνησης</option>	                                            
 									</select>
 									<span class="input-group-btn">
-										<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+										<button type='submit' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 									</span>
 								</div>                                
 							</form>
-						
 					</div>
 					
                 <div class ="box box-solid collapsed-box"><!--background-color: #458FB4;-->
@@ -149,11 +154,9 @@
 								<div class="input-group">
 									<label>Τωρινή τοποθεσία</label>
 									<div class="input-group">
-										
-											<input type="text" name="clientname" class="form-control" size="45" placeholder="Καταχώρηση..."/>
-										
+											<input id="pac-input" class="form-control" type="text" placeholder="Search Box">
 										<span class="input-group-btn">
-											<button type='submit' name='search' id='search-btn' class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
+											<button type='submit' name='search'  class="form-control btn btn-flat"><i class="fa fa-search"></i></button>
 										</span>
 									</div>
 								</div>
@@ -163,45 +166,29 @@
                                             <input id="range_5" type="text" name="range_5" value="" />
                                         </div>
                                 </div>
-
-
-
-                                            
-                                        </div>
+                            </form>
+                    </div>
                 <div class ="box box-solid collapsed-box"><!--background-color: #458FB4;-->
 						<div class="box-header bg-light-blue">
 
-							<p class = "text-pos-header"><i>Συστάσεις</i></span></p>
+							<p class = "text-pos-header"><i>Συστάσεις</i></p>
 						</div>
                     <!-- search form -->
-                    
-
-
-
-
-
-                                            
-                                        </div>                                        
-                                
-							</form>
-						
-					</div> 
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        <br> 
-                        <br>
-                        
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
+                     </div>
+                </aside>
                 </section>
+        </div>
+                <!-- Content Header (Page header) -->
 
-                <!-- Main content -->
-                <section class="content">
-
+                <aside class="right-side">
+                    <!-- Main content -->
+                    <section class="content">
+                        <div id="map-display"></div>
+                    </section><!-- /.content -->
+                </aside>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                <section>
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
                         <div class="col-lg-3 col-xs-6">
@@ -281,44 +268,14 @@
                             </div>
                         </div><!-- ./col -->
                     </div><!-- /.row -->
-
-                    <!-- Main row -->
-
-                </section><!-- /.content -->            
-
-
-                </section><!-- /.content -->            
-					           
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-
                 </section>
-
-                <!-- Main content -->
-                <section class="content">
-
-
-                </section><!-- /.content -->                    
-
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-            
 
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side"> 
 
             </aside><!-- /.right-side -->
-        </div><!-- ./wrapper -->
-        
         
 
-
-        <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
         <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- AdminLTE App -->

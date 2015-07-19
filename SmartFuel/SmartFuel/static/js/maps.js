@@ -3,6 +3,9 @@
 // pick list containing a mix of places and predicted search terms.
 
 var map;
+var center;
+var circle;
+var markers = []
 function initialize() {
 
   var markers = [];
@@ -13,10 +16,10 @@ function initialize() {
   // Try HTML5 geolocation
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = new google.maps.LatLng(position.coords.latitude,
+                center = new google.maps.LatLng(position.coords.latitude,
                     position.coords.longitude);
-                getAddress(pos);
-
+                getAddress(center);
+                showNearestFuelStations(1000);
             }, function() {
                 handleNoGeolocation(true);
             });
@@ -44,30 +47,30 @@ function initialize() {
     for (var i = 0, marker; marker = markers[i]; i++) {
       marker.setMap(null);
     }
-
     // For each place, get the icon, place name, and location.
     markers = [];
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0, place; place = places[i]; i++) {
       var image = {
         url: place.icon,
-        size: new google.maps.Size(71, 71),
+        size: new google.maps.Size(171, 171),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
       };
 
       // Create a marker for each place.
+      center = place.geometry.location;
       var marker = new google.maps.Marker({
         map: map,
         icon: image,
         title: place.name,
         position: place.geometry.location
       });
-
       markers.push(marker);
 
       bounds.extend(place.geometry.location);
+      showNearestFuelStations(1200);
     }
 
     map.fitBounds(bounds);
@@ -105,11 +108,14 @@ function getAddress(latlng) {
                 map.setCenter(results[0].geometry.location);
                 var message = results[0].formatted_address.split(", ")[0]
                     + results[1].formatted_address;
+                var marker = new google.maps.Marker({
+                  position: latlng,
+                  map: map
+                });
                 var infowindow = new google.maps.InfoWindow({
-                    map: map,
-                    position: latlng,
                     content: 'Είστε εδώ. ' + message
                 });
+                infowindow.open(map,marker);
             }
             else {
                 alert("No results");
@@ -118,6 +124,78 @@ function getAddress(latlng) {
             alert("Geocoding unsuccessful: Status " + status);
         }
     });
+}
+
+function showNearestFuelStations(radius) {
+	$.ajax({
+		url: "/nearest",
+		dataType: 'json',
+		data: {
+		},
+		success: function(data) {
+            displayNearestFuelStations(radius, center, data);
+		},
+		error: function() {
+			alert("Κάτι πήγε στραβά παρακαλώ δοκιμάστε ξανά");
+		}
+	});
+}
+
+function markMultipleStations(coordinates) {
+	var LATITUDE_INDEX = 0;
+	var LONGITUDE_INDEX = 1;
+    if (markers.length > 0)
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+            delete markers[i];
+        }
+
+	for(var i = 0; i < coordinates.length; i++) {
+        var location = new google.maps.LatLng(parseFloat(coordinates[i][LATITUDE_INDEX]),
+            parseFloat(coordinates[i][LONGITUDE_INDEX]));
+        var marker = new google.maps.Marker({
+            map: map,
+            position: location
+        });
+        markers.push(marker);
+    }
+}
+
+function displayNearestFuelStations(radius, pos, stations) {
+	var coord = [];
+    if (circle != undefined && circle != null)
+        circle.setMap(null);
+	drawCircle(radius, pos);
+    circle.setMap(map);
+	for(var i = 0; i < stations.length; i++) {
+        var lat = stations[i].fields.latitude;
+        var lon = stations[i].fields.longitude;
+		var location = new google.maps.LatLng(lat, lon);
+		if(circle.getBounds().contains(location)) {
+            var geo_location = [];
+            geo_location.push(lat);
+            geo_location.push(lon);
+			coord.push(geo_location);
+		}
+	}
+	markMultipleStations(coord);
+	map.setZoom(13);
+}
+
+function drawCircle(radius, location) {
+	var circleInfo = {
+		strokeColor: '#FF0000',
+		strokeOpacity: 0.6,
+		strokeWeight: 2,
+		fillColor: '00FFFF',
+		fillOpacity: 0.35,
+		map: this.map,
+		center: location,
+		radius: parseInt(radius)
+
+	};
+	circle = new google.maps.Circle(circleInfo);
+	map.setZoom(14);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
